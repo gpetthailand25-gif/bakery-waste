@@ -429,8 +429,12 @@
   function handleLogout() {
     state.role = null;
     state.roleLabel = "";
-    state.entries = [];
-    entriesLoaded = false; settingsLoaded = false;
+    // NOTE: intentionally NOT clearing state.entries / entriesLoaded / settingsLoaded here.
+    // The Firestore onSnapshot listeners stay subscribed in the background and only fire
+    // again when the underlying data changes — clearing these flags on logout meant the
+    // "connecting..." screen never got re-rendered after switching accounts (needed a
+    // hard refresh to re-trigger the listeners). Keeping the cached data means the next
+    // login just calls render() immediately via startAppAfterLogin().
     try { localStorage.removeItem(ROLE_STORAGE_KEY); } catch (err) { /* ignore */ }
     render();
   }

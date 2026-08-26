@@ -8,66 +8,77 @@
   @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
   :root {
-    --bg: #171310; --surface: #211A15; --surface-2: #2A211A; --border: #3A2E22;
-    --text: #F1E8DD; --text-muted: #A6968A; --accent: #C98A4B; --accent-dim: #5B4127;
-    --money: #E0B65C; --warn: #D08A3E; --danger: #B2554A;
+    --bg: #FFFBEA; --surface: #FFF6D8; --surface-2: #FFFFFF; --border: #F0DDA0;
+    --text: #3A2E14; --text-muted: #7E6E45; --accent: #F0B429; --accent-dim: #FFF0BE;
+    --accent-soft: #B9840A; --money: #C9930A; --warn: #C97A12; --danger: #D9584A; --good: #4E9A5C;
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
+  html, body { margin: 0; padding: 0; overflow-x: hidden; }
   body {
     font-family: 'IBM Plex Sans Thai', sans-serif;
-    background: #0E0B09;
+    background: radial-gradient(ellipse at top, #FFFDF2 0%, #FFF2CC 100%);
     color: var(--text);
     min-height: 100vh;
-    padding: 24px 16px;
+    padding: 28px 20px;
+    line-height: 1.55;
   }
   .wt-mono { font-family: 'IBM Plex Mono', monospace; }
 
-  #app { max-width: 1180px; margin: 0 auto; background: var(--bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+  #app { max-width: 1560px; width: 100%; margin: 0 auto; background: var(--bg); border-radius: 14px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 20px 50px -24px rgba(160,120,30,0.3), 0 0 0 1px rgba(255,255,255,0.6); }
+  @media (max-width: 1620px) { #app { max-width: 96vw; } }
 
-  .wt-header { padding: 22px 24px 16px; border-bottom: 1px solid var(--border); background: linear-gradient(180deg, #1D1712 0%, #171310 100%); }
-  .wt-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: var(--accent); text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
-  .wt-eyebrow::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
-  .wt-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 30px; margin: 4px 0 14px; }
-  .wt-tabs { display: flex; gap: 6px; }
-  .wt-tab { font-size: 14px; font-weight: 600; padding: 9px 16px; border-radius: 7px 7px 0 0; background: transparent; border: 1px solid transparent; color: var(--text-muted); cursor: pointer; font-family: inherit; }
-  .wt-tab.active { color: var(--text); background: var(--surface); border-color: var(--border); border-bottom-color: var(--surface); }
-  .wt-tab:hover:not(.active) { color: var(--text); }
+  .wt-header { padding: 24px 28px 18px; border-bottom: 1px solid var(--border); background: linear-gradient(180deg, #FFF8E0 0%, #FFF3CC 100%); }
+  .wt-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: var(--accent-soft); text-transform: uppercase; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; row-gap: 6px; }
+  .wt-eyebrow::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); flex-shrink: 0; }
+  .wt-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: clamp(22px, 4vw, 30px); margin: 4px 0 14px; color: var(--text); }
+  .wt-tabs { display: flex; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+  .wt-tab { font-size: 14px; font-weight: 600; padding: 10px 18px; border-radius: 8px 8px 0 0; background: transparent; border: 1px solid transparent; color: var(--text-muted); cursor: pointer; font-family: inherit; transition: color .15s ease, background .15s ease; white-space: nowrap; flex-shrink: 0; }
+  .wt-tab.active { color: var(--text); background: var(--surface-2); border-color: var(--border); border-bottom-color: var(--surface-2); }
+  .wt-tab:hover:not(.active) { color: var(--accent-soft); }
 
-  .wt-body { padding: 20px 24px 28px; background: var(--surface); }
+  .wt-body { padding: 24px 28px 32px; background: var(--surface-2); }
 
-  .wt-entry-grid { display: grid; grid-template-columns: 360px 1fr; gap: 20px; }
-  @media (max-width: 780px) { .wt-entry-grid { grid-template-columns: 1fr; } }
+  .wt-entry-grid { display: grid; grid-template-columns: 380px 1fr; gap: 22px; }
+  @media (max-width: 900px) { .wt-entry-grid { grid-template-columns: 1fr; } }
 
-  .wt-card { background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
-  .wt-card h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; margin: 0 0 14px; border-left: 3px solid var(--accent); padding-left: 9px; }
+  .wt-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; box-shadow: 0 1px 2px rgba(160,120,30,0.05); min-width: 0; }
+  .wt-card h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; margin: 0 0 14px; border-left: 3px solid var(--accent); padding-left: 9px; color: var(--accent-soft); }
   .wt-field { margin-bottom: 12px; }
-  .wt-field label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 5px; font-weight: 500; }
-  .wt-field input, .wt-field select, .wt-field textarea { width: 100%; background: var(--bg); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 9px 10px; font-size: 14px; font-family: 'IBM Plex Sans Thai', sans-serif; outline: none; }
-  .wt-field input:focus, .wt-field select:focus, .wt-field textarea:focus { border-color: var(--accent); }
+  .wt-field label { display: block; font-size: 12.5px; color: var(--text-muted); margin-bottom: 5px; font-weight: 600; }
+  .wt-field input, .wt-field select, .wt-field textarea { width: 100%; background: var(--surface-2); border: 1px solid var(--border); color: var(--text); border-radius: 7px; padding: 9px 11px; font-size: 16px; font-family: 'IBM Plex Sans Thai', sans-serif; outline: none; transition: border-color .15s ease, box-shadow .15s ease; }
+
+  .wt-combo { position: relative; }
+  .wt-combo-list { position: absolute; z-index: 40; top: calc(100% + 4px); left: 0; right: 0; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 10px 24px -8px rgba(120,90,20,0.3); max-height: 220px; overflow-y: auto; }
+  .wt-combo-item { padding: 8px 11px; cursor: pointer; font-size: 14px; display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+  .wt-combo-item:hover, .wt-combo-item.active { background: var(--accent-dim); }
+  .wt-combo-item .name { color: var(--text); }
+  .wt-combo-item .code { color: var(--text-muted); font-family: 'IBM Plex Mono', monospace; font-size: 11px; flex-shrink: 0; }
+  .wt-combo-empty { padding: 10px 11px; font-size: 12.5px; color: var(--text-muted); }
+  .wt-field input:focus, .wt-field select:focus, .wt-field textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
   .wt-field input:disabled { opacity: 0.6; }
   .wt-hint { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
-  .wt-link { color: var(--accent); cursor: pointer; text-decoration: underline; background: none; border: none; padding: 0; font-size: 11px; font-family: inherit; }
+  .wt-link { color: var(--accent-soft); cursor: pointer; text-decoration: underline; background: none; border: none; padding: 0; font-size: 11px; font-family: inherit; }
   .wt-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .wt-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
   .wt-error { font-size: 12.5px; color: var(--warn); margin: -4px 0 10px; min-height: 1px; }
 
-  .wt-total-box { background: var(--bg); border: 1px dashed var(--accent-dim); border-radius: 7px; padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .wt-total-box { background: var(--bg); border: 1.5px dashed var(--accent); border-radius: 7px; padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
   .wt-total-box .lbl { font-size: 12.5px; color: var(--text-muted); }
   .wt-total-box .val { font-family: 'IBM Plex Mono', monospace; font-size: 18px; color: var(--money); font-weight: 600; }
 
   .wt-photo-zone { border: 1.5px dashed var(--border); border-radius: 8px; padding: 12px; text-align: center; background: var(--bg); margin-bottom: 4px; }
   .wt-photo-zone input[type=file] { display: none; }
-  .wt-photo-label { display: inline-block; font-size: 13px; color: var(--accent); cursor: pointer; font-weight: 600; border: 1px solid var(--accent-dim); padding: 6px 14px; border-radius: 6px; }
+  .wt-photo-label { display: inline-block; font-size: 13px; color: var(--accent-soft); cursor: pointer; font-weight: 600; border: 1.5px solid var(--accent); padding: 6px 14px; border-radius: 6px; background: var(--surface-2); }
   .wt-photo-label:hover { background: var(--accent-dim); }
   .wt-photo-preview-list { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; justify-content: center; min-height: 0; }
   .wt-photo-preview { position: relative; display: inline-block; }
-  .wt-photo-preview img { width: 78px; height: 78px; object-fit: cover; border-radius: 6px; border: 3px solid var(--surface); outline: 1px solid var(--border); transform: rotate(-1.5deg); box-shadow: 0 3px 8px rgba(0,0,0,0.35); }
+  .wt-photo-preview img { width: 78px; height: 78px; object-fit: cover; border-radius: 6px; border: 3px solid var(--surface); outline: 1px solid var(--border); transform: rotate(-1.5deg); box-shadow: 0 3px 8px rgba(120,90,20,0.18); }
   .wt-photo-preview:nth-child(even) img { transform: rotate(1.5deg); }
   .wt-photo-remove { position: absolute; top: -8px; right: -8px; background: var(--danger); color: #fff; border: none; border-radius: 50%; width: 20px; height: 20px; font-size: 11px; cursor: pointer; line-height: 1; }
 
-  .wt-submit { width: 100%; background: var(--accent); color: #1D1508; font-weight: 700; border: none; border-radius: 7px; padding: 11px; font-size: 14.5px; cursor: pointer; margin-top: 4px; font-family: inherit; }
-  .wt-submit:hover { filter: brightness(1.1); }
+  .wt-submit { width: 100%; background: linear-gradient(180deg, var(--accent-soft), var(--accent)); color: #1D1508; font-weight: 700; border: none; border-radius: 8px; padding: 11px; font-size: 14.5px; cursor: pointer; margin-top: 4px; font-family: inherit; transition: filter .15s ease, transform .1s ease; }
+  .wt-submit:hover { filter: brightness(1.08); }
+  .wt-submit:active { transform: translateY(1px); }
   .wt-submit:disabled { opacity: 0.5; cursor: not-allowed; }
   .wt-save-state { font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 8px; font-family: 'IBM Plex Mono', monospace; min-height: 14px; }
 
@@ -80,11 +91,14 @@
   .wt-csv-btn:hover { color: var(--text); border-color: var(--accent); }
   .wt-csv-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-  .wt-table-wrap { overflow-x: auto; max-height: 560px; overflow-y: auto; }
-  table.wt-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-  table.wt-table thead th { text-align: left; font-weight: 600; color: var(--text-muted); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; padding: 8px 8px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--surface-2); }
-  table.wt-table td { padding: 8px; border-bottom: 1px solid var(--border); vertical-align: middle; }
-  table.wt-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .wt-table-wrap { overflow-x: auto; max-height: 560px; overflow-y: auto; border-radius: 8px; min-width: 0; -webkit-overflow-scrolling: touch; }
+  table.wt-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.wt-table thead th { text-align: left; font-weight: 700; color: var(--text-muted); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; padding: 9px 8px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--surface); }
+  table.wt-table td { padding: 9px 8px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  table.wt-table tr:hover td { background: rgba(240,180,40,0.08); }
+  .wt-sortable-th { cursor: pointer; user-select: none; white-space: nowrap; }
+  .wt-sortable-th:hover { color: var(--accent-soft); }
+  .wt-sort-arrow { font-size: 9px; margin-left: 3px; opacity: 0.75; }
   .wt-tag { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; white-space: nowrap; }
   .wt-thumb { width: 34px; height: 34px; object-fit: cover; border-radius: 5px; cursor: pointer; border: 1px solid var(--border); }
   .wt-thumb-wrap { position: relative; width: 34px; height: 34px; }
@@ -93,35 +107,38 @@
   .wt-del { background: transparent; border: 1px solid var(--border); color: var(--text-muted); border-radius: 5px; width: 24px; height: 24px; cursor: pointer; font-size: 12px; }
   .wt-del:hover { color: var(--danger); border-color: var(--danger); }
   .wt-edit-btn { background: transparent; border: 1px solid var(--border); color: var(--text-muted); border-radius: 5px; padding: 4px 9px; cursor: pointer; font-size: 11.5px; font-family: inherit; }
-  .wt-edit-btn:hover { color: var(--accent); border-color: var(--accent); }
+  .wt-edit-btn:hover { color: var(--accent-soft); border-color: var(--accent); }
   .wt-empty { color: var(--text-muted); font-size: 13.5px; text-align: center; padding: 30px 0; }
   .wt-prod-code { color: var(--text-muted); font-size: 11px; }
-  .wt-run-no { color: var(--accent); font-weight: 600; white-space: nowrap; }
+  .wt-run-no { color: var(--accent-soft); font-weight: 700; white-space: nowrap; }
   .wt-rootcause-cell { max-width: 220px; white-space: normal; font-size: 12px; line-height: 1.5; color: var(--text); }
+  .wt-wrap-cell { max-width: 220px; white-space: normal; font-size: 12px; line-height: 1.5; color: var(--text); }
 
   .wt-stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 18px; }
   @media (max-width: 700px) { .wt-stat-row { grid-template-columns: 1fr; } }
-  .wt-stat { background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; }
+  .wt-stat { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 16px 18px; transition: transform .12s ease, border-color .12s ease; }
+  .wt-stat:hover { transform: translateY(-2px); border-color: var(--accent-dim); }
   .wt-stat .lbl { font-size: 11.5px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-family: 'IBM Plex Mono', monospace; }
   .wt-stat .val { font-family: 'Barlow Condensed', sans-serif; font-size: 32px; font-weight: 700; margin-top: 4px; color: var(--money); }
   .wt-stat .val span { font-size: 15px; color: var(--text-muted); font-family: 'IBM Plex Sans Thai', sans-serif; font-weight: 500; margin-left: 4px; }
   .wt-stat .sub { font-size: 11.5px; color: var(--text-muted); margin-top: 3px; }
 
   .wt-range-toggle { display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; }
-  .wt-range-btn { background: var(--surface-2); border: 1px solid var(--border); color: var(--text-muted); padding: 6px 14px; border-radius: 20px; font-size: 12.5px; cursor: pointer; font-family: 'IBM Plex Mono', monospace; }
+  .wt-range-btn { background: var(--surface); border: 1px solid var(--border); color: var(--text-muted); padding: 6px 14px; border-radius: 20px; font-size: 12.5px; cursor: pointer; font-family: 'IBM Plex Mono', monospace; }
   .wt-range-btn.active { background: var(--accent-dim); color: var(--text); border-color: var(--accent); }
 
   .wt-dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-  @media (max-width: 800px) { .wt-dash-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 900px) { .wt-dash-grid { grid-template-columns: 1fr; } }
 
   .wt-gauges { display: flex; flex-direction: column; gap: 11px; }
   .wt-gauge-row { display: flex; align-items: center; gap: 10px; }
   .wt-gauge-label { width: 150px; font-size: 12px; color: var(--text-muted); flex-shrink: 0; }
-  .wt-gauge-track { flex: 1; height: 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; background-image: repeating-linear-gradient(90deg, transparent, transparent 9px, rgba(255,255,255,0.04) 9px, rgba(255,255,255,0.04) 10px); }
+  .wt-gauge-track { flex: 1; height: 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; background-image: repeating-linear-gradient(90deg, transparent, transparent 9px, rgba(120,90,20,0.05) 9px, rgba(120,90,20,0.05) 10px); }
   .wt-gauge-fill { height: 100%; border-radius: 2px; }
   .wt-gauge-val { width: 90px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 12px; flex-shrink: 0; }
 
   .wt-source-table { width: 100%; font-size: 13px; border-collapse: collapse; }
+  .wt-source-table th { text-align: left; font-size: 11px; color: var(--text-muted); font-weight: 600; padding: 4px 4px 8px; border-bottom: 1px solid var(--border); }
   .wt-source-table td { padding: 7px 4px; border-bottom: 1px solid var(--border); }
   .wt-source-table .name-cell { max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .wt-source-bar-track { background: var(--bg); border-radius: 3px; height: 8px; overflow: hidden; border: 1px solid var(--border); }
@@ -142,7 +159,7 @@
 
   .wt-settings-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
   .wt-settings-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  @media (max-width: 800px) { .wt-settings-row { grid-template-columns: 1fr; } }
+  @media (max-width: 900px) { .wt-settings-row { grid-template-columns: 1fr; } }
   .wt-chip-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; min-height: 20px; }
   .wt-chip { display: flex; align-items: center; gap: 7px; background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: 6px 8px 6px 13px; font-size: 12.5px; }
   .wt-chip-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
@@ -152,9 +169,67 @@
   .wt-inline-add input { flex: 1; }
   .wt-inline-add button { background: var(--accent); color: #1D1508; border: none; border-radius: 6px; padding: 0 16px; font-weight: 700; cursor: pointer; font-size: 13px; font-family: inherit; }
   .wt-prod-form-row { display: grid; grid-template-columns: 1fr 1.4fr 0.8fr 0.9fr auto; gap: 8px; align-items: end; margin-bottom: 6px; }
-  @media (max-width: 700px) { .wt-prod-form-row { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 640px) { .wt-prod-form-row { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 420px) { .wt-prod-form-row { grid-template-columns: 1fr; } }
   .wt-cancel-link { background: none; border: none; color: var(--text-muted); text-decoration: underline; cursor: pointer; font-size: 12px; margin-top: 6px; font-family: inherit; }
   .wt-note { font-size: 11.5px; color: var(--text-muted); margin: 10px 0 0; line-height: 1.6; }
+
+  /* ---------- responsive: PC / iPad (portrait + landscape) / mobile ---------- */
+
+  /* larger, easier-to-hit tap targets on touch devices (phones + tablets),
+     left untouched for mouse/trackpad use even at a narrow window width */
+  @media (hover: none) and (pointer: coarse) {
+    .wt-tab { padding: 12px 16px; }
+    .wt-del, .wt-edit-btn, .wt-csv-btn, .wt-range-btn, .wt-chip button, .wt-cancel-link, .wt-link { min-height: 32px; }
+    .wt-del { width: 32px; height: 32px; }
+    .wt-submit { padding: 13px; }
+    .wt-photo-label { padding: 9px 16px; }
+    table.wt-table td, table.wt-table th { padding: 11px 8px; }
+  }
+
+  /* tablets in portrait (iPad mini/Air/Pro ~768-834px) and large phones */
+  @media (max-width: 900px) {
+    body { padding: 18px 14px; }
+    .wt-header { padding: 18px 18px 14px; }
+    .wt-body { padding: 18px 18px 26px; }
+    .wt-stat-row { gap: 10px; }
+  }
+
+  /* phones, both orientations */
+  @media (max-width: 560px) {
+    body { padding: 10px 8px; }
+    #app { border-radius: 10px; }
+    .wt-header { padding: 14px 14px 10px; }
+    .wt-body { padding: 14px 14px 20px; }
+    .wt-tab { padding: 9px 12px; font-size: 13px; }
+    .wt-card { padding: 14px; }
+    .wt-row2, .wt-row3 { grid-template-columns: 1fr; gap: 8px; }
+    .wt-stat-row { grid-template-columns: 1fr 1fr; }
+    .wt-stat .val { font-size: 26px; }
+    .wt-gauge-row { flex-wrap: wrap; row-gap: 4px; }
+    .wt-gauge-label { width: 100%; margin-bottom: 1px; }
+    .wt-gauge-val { width: auto; margin-left: 8px; }
+    .wt-filter-row { flex-direction: column; align-items: stretch; }
+    .wt-filter-row input, .wt-filter-row .wt-search-input { width: 100%; min-width: 0; }
+    .wt-filter-sep { display: none; }
+    .wt-source-table .name-cell { max-width: 90px; }
+    .wt-lb-nav { width: 36px; height: 36px; font-size: 18px; }
+    .wt-lb-prev { left: 10px; }
+    .wt-lb-next { right: 10px; }
+  }
+
+  /* very small phones (portrait) */
+  @media (max-width: 380px) {
+    .wt-stat-row { grid-template-columns: 1fr; }
+    .wt-title { font-size: 20px; }
+  }
+
+  /* short landscape screens (phones/tablets rotated): the photo lightbox and
+     tall modals need to fit within a shorter viewport without clipping */
+  @media (max-height: 480px) and (orientation: landscape) {
+    .wt-lightbox img { max-height: 78vh; }
+    .wt-lb-count { bottom: 8px; }
+  }
 </style>
 </head>
 <body>
@@ -165,6 +240,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-storage-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script>
   var firebaseConfig = {
     apiKey: "AIzaSyCBqLLruYcutKwHXaD4ZJVtJZIAd_cgno4",
@@ -185,7 +261,8 @@
   "use strict";
 
   // ---------- constants ----------
-  var TYPE_COLOR_PALETTE = ["#C98A4B", "#B2554A", "#9C7A3F", "#6F8FA6", "#8A9A6E", "#8B7E72", "#7C6C9C", "#4C9A85", "#A6684F", "#6B8E6E"];
+  var TYPE_COLOR_PALETTE = ["#B8860B", "#C0574A", "#96742E", "#4A7B94", "#5C8A4E", "#8A7A5C", "#7A6BAE", "#3E9484", "#B06A4A", "#5F8E6E"];
+  var THAI_MONTHS_SHORT = ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."];
   var ROLE_STORAGE_KEY = "bakery_waste_role_v1";
   var ACCESS_CODES = {
     "acc-741": { role: "accounting", label: "ฝ่ายบัญชี" },
@@ -193,8 +270,8 @@
   };
   // tabs each role is allowed to see ("accounting" sees everything)
   var ROLE_ALLOWED_TABS = {
-    accounting: ["entry", "dashboard", "settings"],
-    production: ["entry", "dashboard"]
+    accounting: ["entry", "production", "dashboard", "settings"],
+    production: ["entry", "production", "dashboard"]
   };
   var ROLE_LABELS = { accounting: "ฝ่ายบัญชี", production: "ฝ่ายโปรดักชั่น" };
   var DEFAULT_SETTINGS = {
@@ -203,12 +280,12 @@
     methods: ["ทิ้ง/กำจัด", "บริจาค", "นำไปเป็นอาหารสัตว์", "นำกลับมาผลิตใหม่", "อื่นๆ"],
     units: ["ชิ้น", "กก.", "ถาด", "โหล", "ก้อน", "แผ่น", "ถุง"],
     wasteTypes: [
-      { id: "overprod", label: "ผลิตเกินความต้องการ", color: "#C98A4B" },
-      { id: "expired",  label: "หมดอายุ/ตกรุ่น",       color: "#B2554A" },
-      { id: "defect",   label: "ตำหนิ/เสียรูปทรง",     color: "#9C7A3F" },
-      { id: "transport", label: "เสียหายระหว่างขนส่ง",  color: "#6F8FA6" },
-      { id: "returned", label: "คืนจากหน้าร้าน",       color: "#8A9A6E" },
-      { id: "other",    label: "อื่นๆ",                color: "#8B7E72" }
+      { id: "overprod", label: "ผลิตเกินความต้องการ", color: "#B8860B" },
+      { id: "expired",  label: "หมดอายุ/ตกรุ่น",       color: "#C0574A" },
+      { id: "defect",   label: "ตำหนิ/เสียรูปทรง",     color: "#96742E" },
+      { id: "transport", label: "เสียหายระหว่างขนส่ง",  color: "#4A7B94" },
+      { id: "returned", label: "คืนจากหน้าร้าน",       color: "#5C8A4E" },
+      { id: "other",    label: "อื่นๆ",                color: "#8A7A5C" }
     ],
     company: {
       nameTh: "บริษัท อินโนว่า ฟู้ด แอนด์ เบค จำกัด",
@@ -242,12 +319,27 @@
     ledgerDateFrom: "",
     ledgerDateTo: "",
     rangeStart: daysAgo(29),
-    rangeEnd: todayStr()
+    rangeEnd: todayStr(),
+    productSearch: "",
+    productSortDir: "asc",
+    confirmDeleteProductId: null,
+    // -- production issue log tab --
+    productionLogs: [],
+    editingProdLogId: null,
+    pendingProdPhotos: [],
+    prodPhotoBusy: false,
+    confirmDeleteProdLogId: null,
+    prodLogSearch: "",
+    prodLogDateFrom: "",
+    prodLogDateTo: "",
+    prodFormDefaults: { date: todayStr() },
+    prodLightboxLogId: null,
+    prodLightboxIndex: 0
   };
 
   function findWasteType(id) {
     var t = state.settings.wasteTypes.find(function (x) { return x.id === id; });
-    return t || { id: id, label: id || "ไม่ระบุ", color: "#8B7E72" };
+    return t || { id: id, label: id || "ไม่ระบุ", color: "#8A7A5C" };
   }
 
   // ---------- utils ----------
@@ -299,12 +391,13 @@
   // ---------- persistence (Firebase Firestore + Storage) ----------
   var saveState = "idle", settingsSaveState = "idle";
   var entriesCol = fbDb.collection("entries");
+  var productionLogsCol = fbDb.collection("productionLogs");
   var settingsDocRef = fbDb.collection("meta").doc("settings");
-  var entriesLoaded = false, settingsLoaded = false;
+  var entriesLoaded = false, settingsLoaded = false, productionLogsLoaded = false;
   var firestoreSyncStarted = false;
 
   function startAppAfterLogin() {
-    if (entriesLoaded && settingsLoaded) { render(); return; }
+    if (entriesLoaded && settingsLoaded && productionLogsLoaded) { render(); return; }
     document.getElementById("app").innerHTML = '<div class="wt-empty-page">กำลังเชื่อมต่อฐานข้อมูล…</div>';
     if (firestoreSyncStarted) return; // listeners already attached; render() fires once data arrives
     firestoreSyncStarted = true;
@@ -344,9 +437,23 @@
       console.error("entries sync error", err);
       document.getElementById("app").innerHTML = '<div class="wt-empty-page">เชื่อมต่อฐานข้อมูลไม่สำเร็จ: ' + esc(err.message) + "</div>";
     });
+
+    productionLogsCol.onSnapshot(function (snapshot) {
+      state.productionLogs = snapshot.docs.map(function (d) {
+        var data = d.data();
+        data.id = d.id;
+        if (!data.photos) data.photos = [];
+        return data;
+      });
+      productionLogsLoaded = true;
+      maybeRenderReady();
+    }, function (err) {
+      console.error("production logs sync error", err);
+      document.getElementById("app").innerHTML = '<div class="wt-empty-page">เชื่อมต่อฐานข้อมูลไม่สำเร็จ: ' + esc(err.message) + "</div>";
+    });
   }
   function maybeRenderReady() {
-    if (entriesLoaded && settingsLoaded) render();
+    if (entriesLoaded && settingsLoaded && productionLogsLoaded) render();
   }
 
   function saveSettings() {
@@ -368,6 +475,20 @@
     saveState = "saving";
     updateSaveIndicator();
     entriesCol.doc(id).delete()
+      .then(function () { saveState = "saved"; updateSaveIndicator(); })
+      .catch(function (err) { console.error(err); saveState = "error"; updateSaveIndicator(); });
+  }
+  function persistProdLog(log) {
+    saveState = "saving";
+    updateSaveIndicator();
+    return productionLogsCol.doc(log.id).set(log)
+      .then(function () { saveState = "saved"; updateSaveIndicator(); })
+      .catch(function (err) { saveState = "error"; updateSaveIndicator(); throw err; });
+  }
+  function deleteProdLogRemote(id) {
+    saveState = "saving";
+    updateSaveIndicator();
+    productionLogsCol.doc(id).delete()
       .then(function () { saveState = "saved"; updateSaveIndicator(); })
       .catch(function (err) { console.error(err); saveState = "error"; updateSaveIndicator(); });
   }
@@ -443,11 +564,15 @@
       renderHeader() +
       '<div class="wt-body">' +
         (state.tab === "entry" ? renderEntryTab() :
+         state.tab === "production" ? renderProductionTab() :
          state.tab === "dashboard" ? renderDashboardTab() : renderSettingsTab()) +
       "</div>" +
       renderLightbox() +
+      renderProdLightbox() +
       renderPrintModal() +
-      renderDeleteConfirmModal();
+      renderDeleteConfirmModal() +
+      renderDeleteConfirmProductModal() +
+      renderDeleteConfirmProdLogModal();
     updateSaveIndicator();
   }
 
@@ -460,7 +585,7 @@
       '<div class="wt-header">' +
         '<div class="wt-eyebrow" style="justify-content:space-between;display:flex;">' +
           '<span>โรงงานเบเกอรี่ · ระบบบันทึกของเสีย</span>' +
-          '<span class="wt-mono" style="color:var(--text-muted);display:flex;align-items:center;gap:10px;">' +
+          '<span class="wt-mono" style="color:var(--text-muted);display:flex;flex-wrap:wrap;align-items:center;gap:10px;row-gap:6px;">' +
             (state.role !== "production" ? '<a href="index.html" class="wt-link" style="text-decoration:none;">← กลับหน้าหลัก</a>' : "") +
             esc(state.roleLabel) +
             '<button type="button" class="wt-link" data-action="logout" style="text-decoration:none;">ออกจากระบบ</button>' +
@@ -469,6 +594,7 @@
         '<div class="wt-title">Bakery Waste Manifest</div>' +
         '<div class="wt-tabs">' +
           tabBtn("entry", "บันทึกข้อมูล") +
+          tabBtn("production", "บันทึก Productions") +
           tabBtn("dashboard", "แดชบอร์ด &amp; รายงาน") +
           tabBtn("settings", "⚙ ตั้งค่า") +
         "</div>" +
@@ -490,6 +616,23 @@
       : "";
     return '<div class="wt-lightbox" data-action="closeLightbox">' +
       '<img src="' + photos[idx] + '" alt="รูปของเสีย">' + nav +
+      "</div>";
+  }
+
+  function renderProdLightbox() {
+    if (!state.prodLightboxLogId) return "";
+    var log = state.productionLogs.find(function (p) { return p.id === state.prodLightboxLogId; });
+    if (!log) return "";
+    var photos = log.photos || [];
+    if (!photos.length) return "";
+    var idx = Math.max(0, Math.min(state.prodLightboxIndex, photos.length - 1));
+    var nav = photos.length > 1
+      ? '<button class="wt-lb-nav wt-lb-prev" data-action="prodLightboxPrev">‹</button>' +
+        '<button class="wt-lb-nav wt-lb-next" data-action="prodLightboxNext">›</button>' +
+        '<div class="wt-lb-count">' + (idx + 1) + " / " + photos.length + "</div>"
+      : "";
+    return '<div class="wt-lightbox" data-action="closeProdLightbox">' +
+      '<img src="' + photos[idx] + '" alt="รูปปัญหาการผลิต">' + nav +
       "</div>";
   }
 
@@ -526,6 +669,78 @@
     );
   }
 
+  function renderDeleteConfirmProductModal() {
+    if (!state.confirmDeleteProductId) return "";
+    var p = state.settings.products.find(function (x) { return x.id === state.confirmDeleteProductId; });
+    var desc = p ? esc(p.name) + (p.code ? " (" + esc(p.code) + ")" : "") : "";
+    return (
+      '<div class="wt-lightbox" data-action="cancelDeleteProduct" style="align-items:flex-start;padding-top:60px;">' +
+        '<div class="wt-card" style="width:320px;max-width:90vw;text-align:left;">' +
+          "<h3>ยืนยันการลบสินค้า</h3>" +
+          '<div style="margin:6px 0 16px;color:var(--text-muted);">ต้องการลบสินค้า' + (desc ? " " + desc : "") + " นี้ใช่หรือไม่? การลบไม่สามารถย้อนกลับได้" + "</div>" +
+          '<button class="wt-submit" type="button" data-action="confirmDeleteProduct" style="background:var(--danger);border-color:var(--danger);">ลบสินค้า</button>' +
+          '<button class="wt-cancel-link" type="button" data-action="cancelDeleteProduct" style="display:block;text-align:center;width:100%;margin-top:10px;">ยกเลิก</button>' +
+        "</div>" +
+      "</div>"
+    );
+  }
+
+  function renderDeleteConfirmProdLogModal() {
+    if (!state.confirmDeleteProdLogId) return "";
+    var p = state.productionLogs.find(function (x) { return x.id === state.confirmDeleteProdLogId; });
+    var desc = p ? esc(p.date) + (p.item ? " · " + esc(p.item.slice(0, 40)) : "") : "";
+    return (
+      '<div class="wt-lightbox" data-action="cancelDeleteProdLog" style="align-items:flex-start;padding-top:60px;">' +
+        '<div class="wt-card" style="width:320px;max-width:90vw;text-align:left;">' +
+          "<h3>ยืนยันการลบรายการ</h3>" +
+          '<div style="margin:6px 0 16px;color:var(--text-muted);">ต้องการลบรายการ' + (desc ? " " + desc : "") + " นี้ใช่หรือไม่? การลบไม่สามารถย้อนกลับได้" + "</div>" +
+          '<button class="wt-submit" type="button" data-action="confirmDeleteProdLog" style="background:var(--danger);border-color:var(--danger);">ลบรายการ</button>' +
+          '<button class="wt-cancel-link" type="button" data-action="cancelDeleteProdLog" style="display:block;text-align:center;width:100%;margin-top:10px;">ยกเลิก</button>' +
+        "</div>" +
+      "</div>"
+    );
+  }
+
+  function getFilteredSortedProducts() {
+    var q = state.productSearch.trim().toLowerCase();
+    var dir = state.productSortDir === "desc" ? -1 : 1;
+    return state.settings.products
+      .filter(function (p) {
+        if (!q) return true;
+        var hay = [p.name, p.code].join(" ").toLowerCase();
+        return hay.indexOf(q) !== -1;
+      })
+      .sort(function (a, b) { return dir * String(a.code || "").localeCompare(String(b.code || ""), "th", { numeric: true }); });
+  }
+
+  function renderProductRowsHtml() {
+    var visibleProducts = getFilteredSortedProducts();
+    var sortArrow = state.productSortDir === "desc" ? "▼" : "▲";
+    if (state.settings.products.length === 0) return '<div class="wt-empty">ยังไม่มีสินค้า — เพิ่มรายการแรกด้านบน</div>';
+    if (visibleProducts.length === 0) return '<div class="wt-empty">ไม่พบสินค้าที่ตรงกับคำค้นหา</div>';
+    return '<table class="wt-table"><thead><tr>' +
+      '<th class="wt-sortable-th" data-action="toggleProductSort">รหัส <span class="wt-sort-arrow">' + sortArrow + '</span></th>' +
+      "<th>ชื่อสินค้า</th><th>หน่วย</th><th>ราคา/หน่วย</th><th></th></tr></thead><tbody>" +
+      visibleProducts.map(function (p) {
+        return "<tr>" +
+          '<td class="wt-mono">' + esc(p.code) + "</td>" +
+          "<td>" + esc(p.name) + "</td>" +
+          "<td>" + esc(p.unit) + "</td>" +
+          '<td class="wt-mono">' + fmtBaht(p.price) + " บ.</td>" +
+          '<td style="display:flex;gap:6px;"><button class="wt-edit-btn" data-action="editProduct" data-id="' + p.id + '">แก้ไข</button>' +
+          '<button class="wt-del" data-action="deleteProduct" data-id="' + p.id + '">✕</button></td>' +
+          "</tr>";
+      }).join("") + "</tbody></table>";
+  }
+
+  function updateProductsTable() {
+    var wrap = document.getElementById("productTableWrap");
+    if (wrap) wrap.innerHTML = renderProductRowsHtml();
+    var clearWrap = document.getElementById("productSearchClearWrap");
+    if (clearWrap) clearWrap.innerHTML = state.productSearch
+      ? '<button type="button" class="wt-csv-btn" data-action="clearProductSearch">ล้าง</button>' : "";
+  }
+
   function getFilteredLedgerEntries() {
     var q = state.ledgerSearch.trim().toLowerCase();
     var from = state.ledgerDateFrom, to = state.ledgerDateTo;
@@ -545,8 +760,8 @@
   function getEntryStatus(entry) {
     var hasRootCause = entry.rootCause && entry.rootCause.trim();
     return hasRootCause
-      ? { label: "เสร็จสมบูรณ์", color: "#6FA37A" }
-      : { label: "รอ PD Confirm", color: "#D08A3E" };
+      ? { label: "เสร็จสมบูรณ์", color: "#4E9A5C" }
+      : { label: "รอ PD Confirm", color: "#C97A12" };
   }
 
   function computeEntryRunNumbers() {
@@ -606,6 +821,147 @@
     }).join("");
   }
 
+  // ---------------- PRODUCTION ISSUE LOG (shared helpers) ----------------
+  function getFilteredProdLogs() {
+    var q = state.prodLogSearch.trim().toLowerCase();
+    var from = state.prodLogDateFrom, to = state.prodLogDateTo;
+    return state.productionLogs
+      .filter(function (p) {
+        if (from && p.date < from) return false;
+        if (to && p.date > to) return false;
+        if (q) {
+          var hay = [p.item, p.solution, p.result].join(" ").toLowerCase();
+          if (hay.indexOf(q) === -1) return false;
+        }
+        return true;
+      })
+      .sort(function (a, b) { return (b.date + b.createdAt).localeCompare(a.date + a.createdAt); });
+  }
+
+  function getProdLogStatus(p) {
+    var hasResult = p.result && p.result.trim();
+    return hasResult
+      ? { label: "แก้ไขเสร็จสิ้น", color: "#4E9A5C" }
+      : { label: "รอสรุปผล", color: "#C97A12" };
+  }
+
+  function computeProdLogRunNumbers() {
+    var byDateOrder = state.productionLogs.slice().sort(function (a, b) { return a.createdAt - b.createdAt; });
+    var counters = {};
+    var map = {};
+    byDateOrder.forEach(function (p) {
+      counters[p.date] = (counters[p.date] || 0) + 1;
+      map[p.id] = p.date.replace(/-/g, "") + "-P" + String(counters[p.date]).padStart(3, "0");
+    });
+    return map;
+  }
+
+  function renderProdLogRowsHtml(list) {
+    if (list.length === 0) return '<div class="wt-empty">ไม่พบรายการที่ตรงกับตัวกรอง</div>';
+    var runNumbers = computeProdLogRunNumbers();
+    return '<table class="wt-table"><thead><tr><th>เลขที่รายการ</th><th>รูป</th><th>วันที่</th><th>รายการ</th><th>แนวทางแก้ไข</th><th>สรุปผลหลังแก้ไข</th><th>สถานะ</th><th></th></tr></thead><tbody>' +
+      list.map(function (p) {
+        var status = getProdLogStatus(p);
+        var pPhotos = p.photos || [];
+        var thumb = pPhotos.length
+          ? '<div class="wt-thumb-wrap"><img class="wt-thumb" src="' + pPhotos[0] + '" alt="" data-action="openProdLightbox" data-id="' + p.id + '">' +
+            (pPhotos.length > 1 ? '<span class="wt-thumb-badge">' + pPhotos.length + "</span>" : "") + "</div>"
+          : '<div class="wt-thumb-empty">–</div>';
+        var itemCell = '<div class="wt-wrap-cell">' + esc(p.item) + "</div>";
+        var solutionCell = (p.solution && p.solution.trim()) ? '<div class="wt-wrap-cell">' + esc(p.solution) + "</div>" : '<span class="wt-prod-code">–</span>';
+        var resultCell = (p.result && p.result.trim()) ? '<div class="wt-wrap-cell">' + esc(p.result) + "</div>" : '<span class="wt-prod-code">–</span>';
+        return "<tr>" +
+          '<td class="wt-mono wt-run-no">' + esc(runNumbers[p.id] || "-") + "</td>" +
+          "<td>" + thumb + "</td>" +
+          '<td class="wt-mono">' + esc(p.date) + "</td>" +
+          "<td>" + itemCell + "</td>" +
+          "<td>" + solutionCell + "</td>" +
+          "<td>" + resultCell + "</td>" +
+          '<td><span class="wt-tag" style="background:' + status.color + '26;color:' + status.color + '">' + status.label + "</span></td>" +
+          '<td style="display:flex;gap:6px;"><button class="wt-edit-btn" data-action="editProdLog" data-id="' + p.id + '">แก้ไข</button>' +
+          '<button class="wt-del" data-action="deleteProdLog" data-id="' + p.id + '" title="ลบ">✕</button></td>' +
+          "</tr>";
+      }).join("") +
+      "</tbody></table>";
+  }
+
+  function updateProdLogTable() {
+    var filtered = getFilteredProdLogs();
+    var wrap = document.getElementById("prodLogTableWrap");
+    if (wrap) wrap.innerHTML = renderProdLogRowsHtml(filtered);
+    var countEl = document.getElementById("prodLogCountText");
+    if (countEl) countEl.textContent = "พบ " + filtered.length + " จากทั้งหมด " + state.productionLogs.length + " รายการ";
+  }
+
+  function renderProdPhotoPreviewsHtml() {
+    return state.pendingProdPhotos.map(function (dataUrl, i) {
+      return '<div class="wt-photo-preview"><img src="' + dataUrl + '" alt="ตัวอย่างปัญหาการผลิต"><button type="button" class="wt-photo-remove" data-action="removeProdPhoto" data-index="' + i + '">✕</button></div>';
+    }).join("");
+  }
+
+  function renderProductionTab() {
+    var editingLog = state.editingProdLogId ? state.productionLogs.find(function (x) { return x.id === state.editingProdLogId; }) : null;
+    var fd = editingLog ? { date: editingLog.date } : state.prodFormDefaults;
+    var initialItem = editingLog ? editingLog.item : "";
+    var initialSolution = editingLog ? editingLog.solution : "";
+    var initialResult = editingLog ? editingLog.result : "";
+    var initialStatus = getProdLogStatus({ result: initialResult });
+
+    var filteredLogs = getFilteredProdLogs();
+    var rowsHtml = renderProdLogRowsHtml(filteredLogs);
+    var hasFilter = state.prodLogSearch || state.prodLogDateFrom || state.prodLogDateTo;
+
+    return (
+      '<div class="wt-entry-grid">' +
+        '<div class="wt-card">' +
+          "<h3>" + (editingLog ? "แก้ไขบันทึกปัญหาการผลิต" : "บันทึกปัญหาการผลิตประจำวัน") + "</h3>" +
+          '<form id="prodLogForm" data-action="submitProdLog">' +
+            '<div class="wt-field"><label>วันที่</label><input type="date" id="prodDateField" value="' + esc(fd.date) + '" max="' + todayStr() + '"></div>' +
+
+            '<div class="wt-field"><label>รายการ (ปัญหาที่พบ)</label><textarea rows="3" id="prodItemField" placeholder="อธิบายปัญหาที่พบในการผลิตวันนี้">' + esc(initialItem) + "</textarea></div>" +
+
+            '<div class="wt-field"><label>รูปภาพ (แนบได้หลายรูป)</label>' +
+              '<div class="wt-photo-zone" id="prodPhotoZone">' +
+                '<label class="wt-photo-label" for="prodPhotoInput"><span id="prodPhotoLabelText">' + (state.prodPhotoBusy ? "กำลังประมวลผลรูป…" : (state.pendingProdPhotos.length ? "📎 เพิ่มรูปภาพ" : "📎 แนบรูปภาพ")) + "</span></label>" +
+                '<input type="file" accept="image/*" multiple id="prodPhotoInput" data-action="prodPhotoChange">' +
+                '<div class="wt-photo-preview-list" id="prodPhotoPreviewWrap">' + renderProdPhotoPreviewsHtml() + "</div>" +
+              "</div>" +
+            "</div>" +
+
+            '<div class="wt-field"><label>แนวทางแก้ไข</label><textarea rows="2" id="prodSolutionField" placeholder="ระบุแนวทางแก้ไขปัญหา">' + esc(initialSolution) + "</textarea></div>" +
+
+            '<div class="wt-field"><label>สรุปผลหลังแก้ไข</label><textarea rows="2" id="prodResultField" placeholder="สรุปผลหลังจากดำเนินการแก้ไข — เว้นว่างไว้หากยังรอผล" data-live-prod-status>' + esc(initialResult) + "</textarea>" +
+              '<div class="wt-hint">สถานะ: <span class="wt-tag" id="prodStatusPreviewTag" style="background:' + initialStatus.color + '26;color:' + initialStatus.color + ';">' + initialStatus.label + "</span></div>" +
+            "</div>" +
+
+            '<div class="wt-error" id="prodFormError"></div>' +
+            '<button class="wt-submit" type="submit">' + (editingLog ? "บันทึกการแก้ไข" : "บันทึกรายการ") + "</button>" +
+            (editingLog ? '<button type="button" class="wt-cancel-link" data-action="cancelEditProdLog" style="display:block;text-align:center;width:100%;">ยกเลิกการแก้ไข</button>' : "") +
+            '<div class="wt-save-state" id="saveIndicator"></div>' +
+          "</form>" +
+        "</div>" +
+
+        '<div class="wt-card">' +
+          '<div class="wt-ledger-head"><h3 style="margin:0;border:none;padding:0;">บันทึกล่าสุด (' + state.productionLogs.length + ")</h3>" +
+            '<div style="display:flex;gap:6px;">' +
+              '<button class="wt-csv-btn" data-action="exportProdXlsx"' + (filteredLogs.length ? "" : " disabled") + '>⤓ Excel</button>' +
+              '<button class="wt-csv-btn" data-action="printProdReport"' + (filteredLogs.length ? "" : " disabled") + '>🖨 PDF รายงาน</button>' +
+            "</div>" +
+          "</div>" +
+          '<div class="wt-filter-row">' +
+            '<input type="text" id="prodLogSearchField" class="wt-search-input" placeholder="🔎 ค้นหารายการ/แนวทางแก้ไข/ผล..." value="' + esc(state.prodLogSearch) + '">' +
+            '<input type="date" id="prodLogDateFromField" value="' + esc(state.prodLogDateFrom) + '" title="จากวันที่">' +
+            '<span class="wt-filter-sep">–</span>' +
+            '<input type="date" id="prodLogDateToField" value="' + esc(state.prodLogDateTo) + '" title="ถึงวันที่">' +
+            (hasFilter ? '<button type="button" class="wt-link" data-action="clearProdLogFilter">ล้างตัวกรอง</button>' : "") +
+          "</div>" +
+          '<div class="wt-hint" id="prodLogCountText" style="margin:0 0 8px;">พบ ' + filteredLogs.length + " จากทั้งหมด " + state.productionLogs.length + " รายการ</div>" +
+          '<div class="wt-table-wrap" id="prodLogTableWrap">' + rowsHtml + "</div>" +
+        "</div>" +
+      "</div>"
+    );
+  }
+
   // ---------------- ENTRY TAB ----------------
   function findMatchingProductId(entry) {
     var byCode = state.settings.products.find(function (p) { return entry.productCode && p.code === entry.productCode; });
@@ -627,10 +983,8 @@
     var initialRootCause = editingEntry ? editingEntry.rootCause : "";
     var initialStatus = getEntryStatus({ rootCause: initialRootCause });
 
-    var productOptions = '<option value="">-- เลือกสินค้า --</option>' +
-      state.settings.products.map(function (p) {
-        return '<option value="' + esc(p.id) + '"' + (p.id === matchedProductId ? " selected" : "") + ">" + esc(p.code) + " — " + esc(p.name) + "</option>";
-      }).join("");
+    var matchedProduct = matchedProductId ? state.settings.products.find(function (p) { return p.id === matchedProductId; }) : null;
+    var productDisplayValue = matchedProduct ? productComboLabel(matchedProduct) : "";
 
     var lineOptions = '<option value="">-- เลือก --</option>' +
       state.settings.lines.map(function (l) { return '<option value="' + esc(l) + '"' + (l === fd.line ? " selected" : "") + ">" + esc(l) + "</option>"; }).join("");
@@ -655,8 +1009,12 @@
               '<div class="wt-field"><label>ประเภทของเสีย</label><select id="typeField">' + typeOptions + "</select></div>" +
             "</div>" +
 
-            '<div class="wt-field"><label>สินค้า</label>' +
-              '<select id="productField" data-action="selectProduct"' + (noProducts ? " disabled" : "") + ">" + productOptions + "</select>" +
+            '<div class="wt-field wt-combo">' +
+              '<label>สินค้า</label>' +
+              '<input type="text" id="productSearchField" autocomplete="off" placeholder="พิมพ์ชื่อสินค้า หรือรหัสสินค้า"' +
+                ' value="' + esc(productDisplayValue) + '"' + (noProducts ? " disabled" : "") + '>' +
+              '<input type="hidden" id="productField" value="' + esc(matchedProductId) + '">' +
+              '<div class="wt-combo-list" id="productComboList" style="display:none;"></div>' +
               (noProducts ? '<div class="wt-hint">ยังไม่มีสินค้าในระบบ — <button type="button" class="wt-link" data-action="setTab" data-tab="settings">ไปที่หน้าตั้งค่าเพื่อเพิ่มสินค้า</button></div>' : "") +
             "</div>" +
 
@@ -755,6 +1113,47 @@
     }
     var maxTrend = Math.max.apply(null, [1].concat(trend.map(function (x) { return x.value; })));
 
+    // ---- monthly comparison (last 12 calendar months, independent of the range filter above) ----
+    var monthlyMap = {};
+    state.entries.forEach(function (e) {
+      var mkey = e.date.slice(0, 7);
+      if (!monthlyMap[mkey]) monthlyMap[mkey] = { value: 0, count: 0 };
+      monthlyMap[mkey].value += e.totalAmount;
+      monthlyMap[mkey].count += 1;
+    });
+    var monthlyTrend = [];
+    for (var mi = 11; mi >= 0; mi--) {
+      var md = new Date();
+      md.setDate(1);
+      md.setMonth(md.getMonth() - mi);
+      var mkey2 = md.getFullYear() + "-" + String(md.getMonth() + 1).padStart(2, "0");
+      var mBucket = monthlyMap[mkey2];
+      monthlyTrend.push({
+        key: mkey2,
+        label: THAI_MONTHS_SHORT[md.getMonth()] + " " + String(md.getFullYear() + 543).slice(-2),
+        value: mBucket ? mBucket.value : 0,
+        count: mBucket ? mBucket.count : 0
+      });
+    }
+    var maxMonthly = Math.max.apply(null, [1].concat(monthlyTrend.map(function (x) { return x.value; })));
+    var thisMonthEntry = monthlyTrend[monthlyTrend.length - 1];
+    var prevMonthEntry = monthlyTrend[monthlyTrend.length - 2];
+    var momChangeHtml = "";
+    if (prevMonthEntry) {
+      if (prevMonthEntry.value === 0 && thisMonthEntry.value === 0) {
+        momChangeHtml = '<span class="wt-mono" style="color:var(--text-muted);">ไม่มีข้อมูลเทียบ</span>';
+      } else if (prevMonthEntry.value === 0) {
+        momChangeHtml = '<span class="wt-mono" style="color:var(--danger);">เดือนก่อนไม่มีข้อมูล</span>';
+      } else {
+        var momPct = ((thisMonthEntry.value - prevMonthEntry.value) / prevMonthEntry.value) * 100;
+        var momUp = momPct > 0.05;
+        var momDown = momPct < -0.05;
+        var momColor = momUp ? "var(--danger)" : momDown ? "#4E9A5C" : "var(--text-muted)";
+        var momArrow = momUp ? "▲" : momDown ? "▼" : "—";
+        momChangeHtml = '<span class="wt-mono" style="color:' + momColor + ';font-weight:600;">' + momArrow + " " + Math.abs(momPct).toFixed(1) + "%</span>";
+      }
+    }
+
     function rangeBtn(k, l) { return '<button class="wt-range-btn ' + (state.range === k ? "active" : "") + '" data-action="setRange" data-range="' + k + '">' + l + "</button>"; }
 
     return (
@@ -813,6 +1212,43 @@
                 '<div class="wt-gauge-val wt-mono">' + fmtBaht(x.value) + " บ.</div></div>";
             }).join("") + "</div>") +
         "</div>" +
+      "</div>" +
+
+      '<div class="wt-card" style="grid-column:1/-1;margin-bottom:16px;">' +
+        '<div class="wt-ledger-head"><h3 style="margin:0;border:none;padding:0;">เปรียบเทียบมูลค่าของเสียรายเดือน (12 เดือนล่าสุด)</h3>' +
+          (prevMonthEntry ? '<div class="wt-hint" style="margin:0;">เดือนนี้เทียบเดือนก่อน: ' + momChangeHtml + "</div>" : "") +
+        "</div>" +
+        '<div class="wt-trend">' + monthlyTrend.map(function (x) {
+          return '<div class="wt-trend-col" title="' + esc(x.label) + ": " + fmtBaht(x.value) + " บาท (" + x.count + ' รายการ)">' +
+            '<div class="wt-trend-bar" style="height:' + Math.max(2, (x.value / maxMonthly * 100)) + '%;"></div>' +
+            '<div class="wt-trend-label">' + esc(x.label) + "</div></div>";
+        }).join("") + "</div>" +
+
+        '<table class="wt-source-table" style="margin-top:18px;"><thead><tr>' +
+          '<th>เดือน</th><th style="text-align:right;">มูลค่ารวม</th><th style="text-align:right;">จำนวนรายการ</th><th style="text-align:right;">เทียบเดือนก่อน</th>' +
+        "</tr></thead><tbody>" +
+          monthlyTrend.map(function (x, i) {
+            var prev = i > 0 ? monthlyTrend[i - 1].value : null;
+            var change;
+            if (prev === null || (prev === 0 && x.value === 0)) {
+              change = '<span class="wt-mono" style="color:var(--text-muted);">–</span>';
+            } else if (prev === 0) {
+              change = '<span class="wt-mono" style="color:var(--danger);">ใหม่</span>';
+            } else {
+              var pct = ((x.value - prev) / prev) * 100;
+              var up = pct > 0.05, down = pct < -0.05;
+              var color = up ? "var(--danger)" : down ? "#4E9A5C" : "var(--text-muted)";
+              var arrow = up ? "▲" : down ? "▼" : "—";
+              change = '<span class="wt-mono" style="color:' + color + ';">' + arrow + " " + Math.abs(pct).toFixed(1) + "%</span>";
+            }
+            return "<tr>" +
+              "<td>" + esc(x.label) + "</td>" +
+              '<td class="wt-mono" style="text-align:right;">' + fmtBaht(x.value) + " บ.</td>" +
+              '<td class="wt-mono" style="text-align:right;">' + x.count + "</td>" +
+              '<td style="text-align:right;">' + change + "</td>" +
+              "</tr>";
+          }).join("") +
+        "</tbody></table>" +
       "</div>"
     );
   }
@@ -824,19 +1260,7 @@
       return '<option value="' + u + '"' + (editing && editing.unit === u ? " selected" : "") + ">" + u + "</option>";
     }).join("");
 
-    var productRows = state.settings.products.length === 0
-      ? '<div class="wt-empty">ยังไม่มีสินค้า — เพิ่มรายการแรกด้านบน</div>'
-      : '<table class="wt-table"><thead><tr><th>รหัส</th><th>ชื่อสินค้า</th><th>หน่วย</th><th>ราคา/หน่วย</th><th></th></tr></thead><tbody>' +
-        state.settings.products.map(function (p) {
-          return "<tr>" +
-            '<td class="wt-mono">' + esc(p.code) + "</td>" +
-            "<td>" + esc(p.name) + "</td>" +
-            "<td>" + esc(p.unit) + "</td>" +
-            '<td class="wt-mono">' + fmtBaht(p.price) + " บ.</td>" +
-            '<td style="display:flex;gap:6px;"><button class="wt-edit-btn" data-action="editProduct" data-id="' + p.id + '">แก้ไข</button>' +
-            '<button class="wt-del" data-action="deleteProduct" data-id="' + p.id + '">✕</button></td>' +
-            "</tr>";
-        }).join("") + "</tbody></table>";
+    var productRows = renderProductRowsHtml();
 
     var lineChips = state.settings.lines.length === 0
       ? '<div class="wt-empty" style="padding:8px 0;">ยังไม่มีรายการ</div>'
@@ -889,9 +1313,15 @@
               '<button class="wt-submit" type="submit" style="width:auto;padding:9px 16px;margin-top:0;">' + (editing ? "บันทึก" : "+ เพิ่ม") + "</button>" +
             "</div>" +
             '<div class="wt-error" id="productFormError"></div>' +
+            '<div class="wt-hint" id="productFormNote" style="color:var(--good);min-height:14px;"></div>' +
             (editing ? '<button type="button" class="wt-cancel-link" data-action="cancelEditProduct">ยกเลิกการแก้ไข</button>' : "") +
+            '<div class="wt-note">แก้ไขราคา/หน่วยแล้วระบบจะอัปเดตให้อัตโนมัติทั้งในรายการที่บันทึกไปแล้วและรายการใหม่</div>' +
           "</form>" +
-          '<div class="wt-table-wrap" style="margin-top:14px;">' + productRows + "</div>" +
+          '<div class="wt-filter-row" style="margin-top:14px;">' +
+            '<input class="wt-search-input" id="productListSearchField" placeholder="ค้นหาสินค้า (ชื่อ/รหัส)" value="' + esc(state.productSearch) + '">' +
+            '<span id="productSearchClearWrap">' + (state.productSearch ? '<button type="button" class="wt-csv-btn" data-action="clearProductSearch">ล้าง</button>' : "") + "</span>" +
+          "</div>" +
+          '<div class="wt-table-wrap" id="productTableWrap">' + productRows + "</div>" +
         "</div>" +
 
         '<div class="wt-settings-row">' +
@@ -946,14 +1376,93 @@
   }
   function showFormError(msg) { var el = document.getElementById("formError"); if (el) el.textContent = msg; }
   function showProductFormError(msg) { var el = document.getElementById("productFormError"); if (el) el.textContent = msg; }
+  function showProductFormNote(msg) { var el = document.getElementById("productFormNote"); if (el) el.textContent = msg; }
 
-  function handleSelectProduct(select) {
-    var product = state.settings.products.find(function (p) { return p.id === select.value; });
+  // ---------------- product combobox (entry form "สินค้า" field) ----------------
+  // Lets the user type either a product name or a product code to find/select
+  // a product, instead of scrolling a plain <select>. #productField stays a
+  // hidden input holding the chosen product id, so handleSubmitEntry doesn't
+  // need to change.
+  function productComboLabel(p) { return p.name + (p.code ? " (" + p.code + ")" : ""); }
+
+  function matchProducts(query) {
+    var q = (query || "").trim().toLowerCase();
+    var list = state.settings.products;
+    if (!q) return list.slice(0, 30);
+    return list.filter(function (p) {
+      return (p.name && p.name.toLowerCase().indexOf(q) !== -1) || (p.code && p.code.toLowerCase().indexOf(q) !== -1);
+    }).slice(0, 30);
+  }
+
+  function renderProductComboListHtml(matches) {
+    if (matches.length === 0) return '<div class="wt-combo-empty">ไม่พบสินค้าที่ตรงกัน</div>';
+    return matches.map(function (p) {
+      return '<div class="wt-combo-item" data-action="pickProduct" data-id="' + esc(p.id) + '">' +
+        '<span class="name">' + esc(p.name) + '</span>' +
+        (p.code ? '<span class="code">' + esc(p.code) + '</span>' : '') +
+        '</div>';
+    }).join("");
+  }
+
+  function openProductCombo(query) {
+    var listEl = document.getElementById("productComboList");
+    if (!listEl) return;
+    listEl.innerHTML = renderProductComboListHtml(matchProducts(query));
+    listEl.style.display = "block";
+  }
+
+  function closeProductCombo() {
+    var listEl = document.getElementById("productComboList");
+    if (listEl) listEl.style.display = "none";
+  }
+
+  function applyProductToFields(product) {
     var unitField = document.getElementById("unitField");
     var priceField = document.getElementById("unitPriceField");
+    if (!unitField || !priceField) return;
     if (product) { unitField.value = product.unit; priceField.value = product.price; }
     else { unitField.value = ""; priceField.value = ""; }
     updateTotalDisplay();
+  }
+
+  function selectProductById(id) {
+    var product = state.settings.products.find(function (p) { return p.id === id; });
+    var hidden = document.getElementById("productField");
+    var searchField = document.getElementById("productSearchField");
+    if (!product || !hidden || !searchField) return;
+    hidden.value = product.id;
+    searchField.value = productComboLabel(product);
+    applyProductToFields(product);
+    closeProductCombo();
+  }
+
+  function handleProductSearchInput(inputEl) {
+    // Any manual edit invalidates the previous selection until the user picks
+    // a product again (by click, or by typing an exact name/code match).
+    var hidden = document.getElementById("productField");
+    if (hidden) hidden.value = "";
+    applyProductToFields(null);
+    openProductCombo(inputEl.value);
+  }
+
+  function handleProductSearchFocus(inputEl) {
+    openProductCombo(inputEl.value);
+  }
+
+  function handleProductSearchBlur(inputEl) {
+    // Delay so a click on a suggestion (which fires after blur) still lands
+    // before we hide the list / attempt an auto-match.
+    setTimeout(function () {
+      closeProductCombo();
+      var hidden = document.getElementById("productField");
+      if (!hidden || hidden.value) return;
+      var q = (inputEl.value || "").trim().toLowerCase();
+      if (!q) return;
+      var exact = state.settings.products.filter(function (p) {
+        return (p.name && p.name.toLowerCase() === q) || (p.code && p.code.toLowerCase() === q);
+      });
+      if (exact.length === 1) selectProductById(exact[0].id);
+    }, 150);
   }
 
   function handleSubmitEntry(e) {
@@ -983,7 +1492,7 @@
 
     var entry = {
       id: entryId,
-      date: date, productName: product.name, productCode: product.code,
+      date: date, productId: product.id, productName: product.name, productCode: product.code,
       type: type, quantity: quantity, unit: product.unit, unitPrice: unitPrice,
       totalAmount: quantity * unitPrice, line: line, method: method, note: note, rootCause: rootCause,
       photos: photos,
@@ -1052,6 +1561,182 @@
     if (lbl) lbl.textContent = state.pendingPhotos.length ? "📎 เพิ่มรูปภาพ" : "📎 แนบรูปภาพ";
   }
 
+  // ---------------- PRODUCTION ISSUE LOG (form handlers) ----------------
+  function handleProdPhotoChange(input) {
+    var files = input.files ? Array.prototype.slice.call(input.files) : [];
+    if (!files.length) return;
+    state.prodPhotoBusy = true;
+    var label = document.getElementById("prodPhotoLabelText");
+    if (label) label.textContent = "กำลังประมวลผลรูป…";
+
+    var promises = files.map(function (file) { return fileToCompressedDataUrl(file); });
+    Promise.all(promises).then(function (dataUrls) {
+      state.pendingProdPhotos = state.pendingProdPhotos.concat(dataUrls);
+      state.prodPhotoBusy = false;
+      var wrap = document.getElementById("prodPhotoPreviewWrap");
+      if (wrap) wrap.innerHTML = renderProdPhotoPreviewsHtml();
+      var lbl = document.getElementById("prodPhotoLabelText");
+      if (lbl) lbl.textContent = "📎 เพิ่มรูปภาพ";
+      if (input) input.value = "";
+    }).catch(function () {
+      state.prodPhotoBusy = false;
+      showProdFormError("แนบรูปภาพไม่สำเร็จ ลองอีกครั้ง");
+      var lbl = document.getElementById("prodPhotoLabelText");
+      if (lbl) lbl.textContent = state.pendingProdPhotos.length ? "📎 เพิ่มรูปภาพ" : "📎 แนบรูปภาพ";
+    });
+  }
+
+  function handleRemoveProdPhoto(index) {
+    state.pendingProdPhotos.splice(index, 1);
+    var wrap = document.getElementById("prodPhotoPreviewWrap");
+    if (wrap) wrap.innerHTML = renderProdPhotoPreviewsHtml();
+    var lbl = document.getElementById("prodPhotoLabelText");
+    if (lbl) lbl.textContent = state.pendingProdPhotos.length ? "📎 เพิ่มรูปภาพ" : "📎 แนบรูปภาพ";
+  }
+
+  function showProdFormError(msg) { var el = document.getElementById("prodFormError"); if (el) el.textContent = msg; }
+
+  function updateProdStatusPreview() {
+    var field = document.getElementById("prodResultField");
+    var tag = document.getElementById("prodStatusPreviewTag");
+    if (!field || !tag) return;
+    var status = getProdLogStatus({ result: field.value });
+    tag.textContent = status.label;
+    tag.style.background = status.color + "26";
+    tag.style.color = status.color;
+  }
+
+  function handleSubmitProdLog(e) {
+    e.preventDefault();
+    var date = document.getElementById("prodDateField").value;
+    var item = document.getElementById("prodItemField").value.trim();
+    var solution = document.getElementById("prodSolutionField").value.trim();
+    var result = document.getElementById("prodResultField").value.trim();
+
+    showProdFormError("");
+    if (!date) return showProdFormError("กรุณาระบุวันที่");
+    if (!item) return showProdFormError("กรุณาระบุรายการปัญหาที่พบ");
+
+    var isEditing = !!state.editingProdLogId;
+    var logId = isEditing ? state.editingProdLogId : uid();
+    var createdAt = isEditing ? state.productionLogs.find(function (x) { return x.id === state.editingProdLogId; }).createdAt : Date.now();
+    var photos = state.pendingProdPhotos.slice();
+
+    var log = {
+      id: logId,
+      date: date, item: item, solution: solution, result: result,
+      photos: photos,
+      createdAt: createdAt
+    };
+
+    var approxBytes = JSON.stringify(log).length;
+    if (approxBytes > 900000) {
+      return showProdFormError("แนบรูปรวมกันใหญ่เกินไป กรุณาลดจำนวนรูป หรือแนบทีละ 2-3 รูป");
+    }
+
+    var submitBtn = document.querySelector("#prodLogForm .wt-submit");
+    if (submitBtn) submitBtn.disabled = true;
+    showProdFormError("กำลังบันทึก…");
+
+    persistProdLog(log).catch(function (err) {
+      console.error(err);
+      showProdFormError("บันทึกไม่สำเร็จ: " + (err && err.message ? err.message : "ลองใหม่อีกครั้ง"));
+      if (submitBtn) submitBtn.disabled = false;
+    });
+
+    state.prodFormDefaults = { date: date };
+    state.pendingProdPhotos = [];
+    state.editingProdLogId = null;
+    showProdFormError("");
+    if (submitBtn) submitBtn.disabled = false;
+    render();
+  }
+
+  function exportProdLogsXlsx() {
+    if (typeof XLSX === "undefined") {
+      alert("ไม่สามารถโหลดไลบรารีสร้างไฟล์ Excel ได้ กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ตแล้วลองใหม่");
+      return;
+    }
+    var rows = getFilteredProdLogs();
+    var runNumbers = computeProdLogRunNumbers();
+    var headerRow = ["เลขที่รายการ", "วันที่", "รายการ (ปัญหาที่พบ)", "แนวทางแก้ไข", "สรุปผลหลังแก้ไข", "สถานะ", "จำนวนรูปภาพแนบ"];
+    var data = rows.map(function (p) {
+      var status = getProdLogStatus(p);
+      return {
+        "เลขที่รายการ": runNumbers[p.id] || "",
+        "วันที่": p.date,
+        "รายการ (ปัญหาที่พบ)": p.item || "",
+        "แนวทางแก้ไข": p.solution || "",
+        "สรุปผลหลังแก้ไข": p.result || "",
+        "สถานะ": status.label,
+        "จำนวนรูปภาพแนบ": (p.photos || []).length
+      };
+    });
+    var ws = data.length ? XLSX.utils.json_to_sheet(data) : XLSX.utils.aoa_to_sheet([headerRow]);
+    ws["!cols"] = [{ wch: 16 }, { wch: 12 }, { wch: 42 }, { wch: 36 }, { wch: 36 }, { wch: 16 }, { wch: 14 }];
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "บันทึกปัญหาการผลิต");
+    XLSX.writeFile(wb, "production-log-" + todayStr() + ".xlsx");
+  }
+
+  function buildAndOpenProdLogPrint() {
+    var c = state.settings.company || {};
+    var rows = getFilteredProdLogs().slice().sort(function (a, b) { return (a.date + a.createdAt).localeCompare(b.date + b.createdAt); });
+    var runNumbers = computeProdLogRunNumbers();
+    var rangeLabel = (state.prodLogDateFrom || state.prodLogDateTo)
+      ? (esc(state.prodLogDateFrom || "…") + " ถึง " + esc(state.prodLogDateTo || "…"))
+      : "ทั้งหมด";
+
+    var bodyRows = rows.map(function (p, i) {
+      var status = getProdLogStatus(p).label;
+      var photoCell = (p.photos && p.photos.length)
+        ? '<img class="pr-photo" src="' + p.photos[0] + '" alt="รูปปัญหาการผลิต">'
+        : '<span class="pr-sub">–</span>';
+      return (
+        "<tr>" +
+        '<td class="pr-c">' + (i + 1) + "</td>" +
+        '<td class="pr-c pr-mono">' + esc(runNumbers[p.id] || "-") + "</td>" +
+        '<td class="pr-c">' + esc(p.date) + "</td>" +
+        '<td class="pr-c">' + photoCell + "</td>" +
+        "<td>" + esc(p.item || "") + "</td>" +
+        "<td>" + ((p.solution && p.solution.trim()) ? esc(p.solution) : '<span class="pr-sub">–</span>') + "</td>" +
+        "<td>" + ((p.result && p.result.trim()) ? esc(p.result) : '<span class="pr-sub">–</span>') + "</td>" +
+        '<td class="pr-c">' + esc(status) + "</td>" +
+        "</tr>"
+      );
+    }).join("");
+
+    var padCount = Math.max(0, 3 - rows.length);
+    for (var i = 0; i < padCount; i++) {
+      bodyRows += '<tr><td class="pr-c">&nbsp;</td><td class="pr-c">&nbsp;</td><td class="pr-c">&nbsp;</td><td class="pr-c">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pr-c">&nbsp;</td></tr>';
+    }
+
+    var html =
+      '<!DOCTYPE html><html lang="th"><head><meta charset="UTF-8"><title>รายงานปัญหาการผลิต</title>' +
+      "<style>" + printBaseStyles() + "</style></head><body>" +
+
+      printHeaderHtml(c) +
+      '<div class="pr-meta">ช่วงวันที่ : ' + rangeLabel + " · จำนวน " + rows.length + " รายการ</div>" +
+      '<div class="pr-title">รายงานบันทึกปัญหาการผลิตประจำวัน</div>' +
+
+      '<table class="pr-table"><thead><tr>' +
+        '<th style="width:4%;">ลำดับ</th><th style="width:9%;">เลขที่</th><th style="width:8%;">วันที่</th><th style="width:8%;">รูป</th>' +
+        '<th style="width:22%;">รายการ (ปัญหาที่พบ)</th><th style="width:20%;">แนวทางแก้ไข</th><th style="width:20%;">สรุปผลหลังแก้ไข</th><th style="width:9%;">สถานะ</th>' +
+      "</tr></thead><tbody>" + bodyRows + "</tbody></table>" +
+
+      '<div class="pr-sign-grid">' +
+        '<div class="pr-sign"><div class="line"></div>ผู้บันทึก / ฝ่ายผลิต</div>' +
+        '<div class="pr-sign"><div class="line"></div>ผู้บริหาร / รับทราบ</div>' +
+      "</div>" +
+
+      '<div class="pr-noprint"><button onclick="window.print()">🖨 พิมพ์ / บันทึกเป็น PDF</button></div>' +
+      "</body></html>";
+
+    var win = window.open("", "_blank");
+    if (!win) { alert("เบราว์เซอร์บล็อกหน้าต่างป็อปอัป กรุณาอนุญาตป็อปอัปสำหรับหน้านี้แล้วลองอีกครั้ง"); return; }
+    win.document.open(); win.document.write(html); win.document.close();
+  }
+
   function handleSubmitProduct(e) {
     e.preventDefault();
     var code = document.getElementById("productCodeField").value.trim();
@@ -1061,15 +1746,46 @@
     showProductFormError("");
     if (!name) return showProductFormError("กรุณาระบุชื่อสินค้า");
     var finalCode = code || nextAutoCode();
+    var syncedCount = 0;
     if (state.editingProductId) {
       var idx = state.settings.products.findIndex(function (p) { return p.id === state.editingProductId; });
-      if (idx > -1) state.settings.products[idx] = Object.assign({}, state.settings.products[idx], { code: finalCode, name: name, unit: unit, price: price });
+      if (idx > -1) {
+        var oldProduct = state.settings.products[idx];
+        var newProduct = Object.assign({}, oldProduct, { code: finalCode, name: name, unit: unit, price: price });
+        state.settings.products[idx] = newProduct;
+        var changed = oldProduct.price !== price || oldProduct.unit !== unit || oldProduct.name !== name || oldProduct.code !== finalCode;
+        if (changed) syncedCount = syncEntriesToProduct(oldProduct, newProduct);
+      }
     } else {
       state.settings.products.push({ id: uid(), code: finalCode, name: name, unit: unit, price: price });
     }
     saveSettings();
     state.editingProductId = null;
     render();
+    if (syncedCount) showProductFormNote("อัปเดตราคา/หน่วยให้อัตโนมัติแล้ว " + syncedCount + " รายการที่เคยบันทึกไว้");
+  }
+
+  // Entries store a snapshot of product name/code/unit/price at the time they
+  // were recorded. When a product's price (or unit/name/code) is edited in
+  // Settings, re-link and refresh every affected entry — past and future —
+  // so the ledger always reflects the current product record rather than a
+  // stale snapshot. Matches by productId when present, falling back to the
+  // product's old code for entries saved before productId existed. Returns
+  // the number of entries updated.
+  function syncEntriesToProduct(oldProduct, newProduct) {
+    var affected = state.entries.filter(function (en) {
+      return en.productId ? en.productId === newProduct.id : en.productCode === oldProduct.code;
+    });
+    affected.forEach(function (en) {
+      en.productId = newProduct.id;
+      en.productName = newProduct.name;
+      en.productCode = newProduct.code;
+      en.unit = newProduct.unit;
+      en.unitPrice = newProduct.price;
+      en.totalAmount = (en.quantity || 0) * newProduct.price;
+      persistEntry(en).catch(function (err) { console.error("sync entry failed", err); });
+    });
+    return affected.length;
   }
 
   function handleSubmitCompany(e) {
@@ -1119,6 +1835,7 @@
         if (ROLE_ALLOWED_TABS[state.role].indexOf(wantTab) === -1) break;
         state.tab = wantTab; render(); break;
       case "logout": handleLogout(); break;
+      case "pickProduct": selectProductById(el.getAttribute("data-id")); break;
       case "setRange":
         state.range = el.getAttribute("data-range");
         var b = getRangeBounds(state.range);
@@ -1169,14 +1886,71 @@
       case "clearLedgerFilter":
         state.ledgerSearch = ""; state.ledgerDateFrom = ""; state.ledgerDateTo = "";
         render(); break;
+      case "editProdLog":
+        var editProdTarget = state.productionLogs.find(function (x) { return x.id === el.getAttribute("data-id"); });
+        if (editProdTarget) {
+          state.editingProdLogId = editProdTarget.id;
+          state.pendingProdPhotos = editProdTarget.photos ? editProdTarget.photos.slice() : [];
+          showProdFormError("");
+          render();
+          var prodCard = document.querySelector(".wt-entry-grid .wt-card");
+          if (prodCard && prodCard.scrollIntoView) prodCard.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+        break;
+      case "cancelEditProdLog":
+        state.editingProdLogId = null;
+        state.pendingProdPhotos = [];
+        render(); break;
+      case "deleteProdLog":
+        state.confirmDeleteProdLogId = el.getAttribute("data-id");
+        render(); break;
+      case "confirmDeleteProdLog":
+        var delPlogId = state.confirmDeleteProdLogId;
+        state.confirmDeleteProdLogId = null;
+        if (state.editingProdLogId === delPlogId) { state.editingProdLogId = null; state.pendingProdPhotos = []; }
+        state.productionLogs = state.productionLogs.filter(function (x) { return x.id !== delPlogId; });
+        render();
+        deleteProdLogRemote(delPlogId);
+        break;
+      case "cancelDeleteProdLog":
+        if (e.target === el) { state.confirmDeleteProdLogId = null; render(); }
+        break;
+      case "removeProdPhoto": handleRemoveProdPhoto(parseInt(el.getAttribute("data-index"), 10)); break;
+      case "openProdLightbox": state.prodLightboxLogId = el.getAttribute("data-id"); state.prodLightboxIndex = 0; render(); break;
+      case "closeProdLightbox": if (e.target === el) { state.prodLightboxLogId = null; render(); } break;
+      case "prodLightboxPrev": case "prodLightboxNext":
+        var plbLog = state.productionLogs.find(function (x) { return x.id === state.prodLightboxLogId; });
+        if (plbLog && plbLog.photos && plbLog.photos.length) {
+          var plen = plbLog.photos.length;
+          state.prodLightboxIndex = action === "prodLightboxPrev" ? (state.prodLightboxIndex - 1 + plen) % plen : (state.prodLightboxIndex + 1) % plen;
+          render();
+        }
+        break;
+      case "clearProdLogFilter":
+        state.prodLogSearch = ""; state.prodLogDateFrom = ""; state.prodLogDateTo = "";
+        render(); break;
+      case "exportProdXlsx": exportProdLogsXlsx(); break;
+      case "printProdReport": buildAndOpenProdLogPrint(); break;
       case "editProduct": state.editingProductId = el.getAttribute("data-id"); render(); break;
       case "cancelEditProduct": state.editingProductId = null; render(); break;
       case "deleteProduct":
-        var pid = el.getAttribute("data-id");
-        state.settings.products = state.settings.products.filter(function (p) { return p.id !== pid; });
-        saveSettings();
-        if (state.editingProductId === pid) state.editingProductId = null;
+        state.confirmDeleteProductId = el.getAttribute("data-id");
         render(); break;
+      case "confirmDeleteProduct":
+        var delPid = state.confirmDeleteProductId;
+        state.confirmDeleteProductId = null;
+        state.settings.products = state.settings.products.filter(function (p) { return p.id !== delPid; });
+        saveSettings();
+        if (state.editingProductId === delPid) state.editingProductId = null;
+        render(); break;
+      case "cancelDeleteProduct":
+        if (e.target === el) { state.confirmDeleteProductId = null; render(); }
+        break;
+      case "toggleProductSort":
+        state.productSortDir = state.productSortDir === "desc" ? "asc" : "desc";
+        render(); break;
+      case "clearProductSearch":
+        state.productSearch = ""; render(); break;
       case "removeLine":
         state.settings.lines = state.settings.lines.filter(function (l) { return l !== el.getAttribute("data-value"); });
         saveSettings(); render(); break;
@@ -1211,15 +1985,18 @@
     var form = e.target;
     if (form.id === "loginForm") handleSubmitLogin(e);
     else if (form.id === "entryForm") handleSubmitEntry(e);
+    else if (form.id === "prodLogForm") handleSubmitProdLog(e);
     else if (form.id === "productForm") handleSubmitProduct(e);
     else if (form.id === "companyForm") handleSubmitCompany(e);
   });
 
   document.getElementById("app").addEventListener("change", function (e) {
-    if (e.target.id === "productField") handleSelectProduct(e.target);
-    else if (e.target.id === "photoInput") handlePhotoChange(e.target);
+    if (e.target.id === "photoInput") handlePhotoChange(e.target);
+    else if (e.target.id === "prodPhotoInput") handleProdPhotoChange(e.target);
     else if (e.target.id === "ledgerDateFromField") { state.ledgerDateFrom = e.target.value; render(); }
     else if (e.target.id === "ledgerDateToField") { state.ledgerDateTo = e.target.value; render(); }
+    else if (e.target.id === "prodLogDateFromField") { state.prodLogDateFrom = e.target.value; render(); }
+    else if (e.target.id === "prodLogDateToField") { state.prodLogDateTo = e.target.value; render(); }
     else if (e.target.id === "dashStartField") { state.rangeStart = e.target.value; state.range = "custom"; render(); }
     else if (e.target.id === "dashEndField") { state.rangeEnd = e.target.value; state.range = "custom"; render(); }
   });
@@ -1227,8 +2004,20 @@
   document.getElementById("app").addEventListener("input", function (e) {
     if (e.target.hasAttribute("data-live-total")) updateTotalDisplay();
     if (e.target.hasAttribute("data-live-status")) updateStatusPreview();
+    if (e.target.hasAttribute("data-live-prod-status")) updateProdStatusPreview();
     if (e.target.id === "ledgerSearchField") { state.ledgerSearch = e.target.value; updateLedgerTable(); }
+    if (e.target.id === "prodLogSearchField") { state.prodLogSearch = e.target.value; updateProdLogTable(); }
+    if (e.target.id === "productListSearchField") { state.productSearch = e.target.value; updateProductsTable(); }
+    if (e.target.id === "productSearchField") handleProductSearchInput(e.target);
   });
+
+  document.getElementById("app").addEventListener("focus", function (e) {
+    if (e.target.id === "productSearchField") handleProductSearchFocus(e.target);
+  }, true);
+
+  document.getElementById("app").addEventListener("blur", function (e) {
+    if (e.target.id === "productSearchField") handleProductSearchBlur(e.target);
+  }, true);
 
   document.getElementById("app").addEventListener("keydown", function (e) {
     var actionKey = e.target.getAttribute && e.target.getAttribute("data-enter-action");
@@ -1239,6 +2028,12 @@
       if (actionKey === "addUnit") addListItem("units", "unitInputField");
       if (actionKey === "addType") addWasteType();
     }
+    if (e.target.id === "productSearchField" && e.key === "Enter") {
+      var list = document.getElementById("productComboList");
+      var first = list && list.querySelector(".wt-combo-item");
+      if (first) { e.preventDefault(); selectProductById(first.getAttribute("data-id")); }
+    }
+    if (e.target.id === "productSearchField" && e.key === "Escape") closeProductCombo();
   });
 
   function handleGeneratePrint() {
